@@ -10,9 +10,10 @@ import Foundation
 class Api {
     static let shared = Api()
     private init(){}
-    
+    let seattle: String = "CurrentWeather"
+    let vancouver: String = "CurrentWeatherVancouver"
     func fetchCurrentWeather(completion: @escaping (CurrentWeather?) -> Void) {
-        guard let path = Bundle.main.path(forResource: "CurrentWeather", ofType: "json") else {
+        guard let path = Bundle.main.path(forResource: vancouver, ofType: "json") else {
             completion(nil)
             return
         }

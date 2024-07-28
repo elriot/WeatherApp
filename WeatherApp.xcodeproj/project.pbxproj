@@ -10,6 +10,7 @@
 		F6418B8B2C56E47A00DED462 /* CurrentWeather.json in Resources */ = {isa = PBXBuildFile; fileRef = F6418B8A2C56E47A00DED462 /* CurrentWeather.json */; };
 		F6418B8F2C56E50B00DED462 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6418B8E2C56E50B00DED462 /* CurrentWeather.swift */; };
 		F6418B922C56E87E00DED462 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6418B912C56E87E00DED462 /* Api.swift */; };
+		F6418B942C56F38E00DED462 /* CurrentWeatherVancouver.json in Resources */ = {isa = PBXBuildFile; fileRef = F6418B932C56F38E00DED462 /* CurrentWeatherVancouver.json */; };
 		F6B7F99A2C56DCC50007AFC4 /* WeeklyForecastDetailRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B7F9992C56DCC50007AFC4 /* WeeklyForecastDetailRow.swift */; };
 		F6D4B5F92C55BEE9005041E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D4B5F82C55BEE9005041E8 /* AppDelegate.swift */; };
 		F6D4B5FB2C55BEE9005041E8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D4B5FA2C55BEE9005041E8 /* SceneDelegate.swift */; };
@@ -27,6 +28,7 @@
 		F6418B8A2C56E47A00DED462 /* CurrentWeather.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = CurrentWeather.json; path = WeatherApp/SampleJSONs/CurrentWeather.json; sourceTree = SOURCE_ROOT; };
 		F6418B8E2C56E50B00DED462 /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 		F6418B912C56E87E00DED462 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		F6418B932C56F38E00DED462 /* CurrentWeatherVancouver.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CurrentWeatherVancouver.json; sourceTree = "<group>"; };
 		F6B7F9992C56DCC50007AFC4 /* WeeklyForecastDetailRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyForecastDetailRow.swift; sourceTree = "<group>"; };
 		F6D4B5F52C55BEE9005041E8 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6D4B5F82C55BEE9005041E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				F6418B8A2C56E47A00DED462 /* CurrentWeather.json */,
+				F6418B932C56F38E00DED462 /* CurrentWeatherVancouver.json */,
 			);
 			path = SampleJSONs;
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 			files = (
 				F6D4B6022C55BEEA005041E8 /* Assets.xcassets in Resources */,
 				F6D4B6052C55BEEA005041E8 /* Base in Resources */,
+				F6418B942C56F38E00DED462 /* CurrentWeatherVancouver.json in Resources */,
 				F6418B8B2C56E47A00DED462 /* CurrentWeather.json in Resources */,
 				F6D4B6002C55BEE9005041E8 /* Base in Resources */,
 			);
