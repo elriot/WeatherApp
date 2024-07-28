@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F6418B8B2C56E47A00DED462 /* CurrentWeather.json in Resources */ = {isa = PBXBuildFile; fileRef = F6418B8A2C56E47A00DED462 /* CurrentWeather.json */; };
 		F6418B8F2C56E50B00DED462 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6418B8E2C56E50B00DED462 /* CurrentWeather.swift */; };
+		F6418B922C56E87E00DED462 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6418B912C56E87E00DED462 /* Api.swift */; };
 		F6B7F99A2C56DCC50007AFC4 /* WeeklyForecastDetailRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B7F9992C56DCC50007AFC4 /* WeeklyForecastDetailRow.swift */; };
 		F6D4B5F92C55BEE9005041E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D4B5F82C55BEE9005041E8 /* AppDelegate.swift */; };
 		F6D4B5FB2C55BEE9005041E8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D4B5FA2C55BEE9005041E8 /* SceneDelegate.swift */; };
@@ -23,8 +24,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F6418B8A2C56E47A00DED462 /* CurrentWeather.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CurrentWeather.json; sourceTree = SOURCE_ROOT; };
+		F6418B8A2C56E47A00DED462 /* CurrentWeather.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = CurrentWeather.json; path = WeatherApp/SampleJSONs/CurrentWeather.json; sourceTree = SOURCE_ROOT; };
 		F6418B8E2C56E50B00DED462 /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
+		F6418B912C56E87E00DED462 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		F6B7F9992C56DCC50007AFC4 /* WeeklyForecastDetailRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyForecastDetailRow.swift; sourceTree = "<group>"; };
 		F6D4B5F52C55BEE9005041E8 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6D4B5F82C55BEE9005041E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -51,14 +53,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F6418B872C56E32000DED462 /* SampleJSONs */ = {
-			isa = PBXGroup;
-			children = (
-				F6418B8A2C56E47A00DED462 /* CurrentWeather.json */,
-			);
-			path = SampleJSONs;
-			sourceTree = "<group>";
-		};
 		F6418B8D2C56E4DF00DED462 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +60,14 @@
 			);
 			name = Models;
 			path = App/Models;
+			sourceTree = "<group>";
+		};
+		F6418B902C56E85E00DED462 /* SampleJSONs */ = {
+			isa = PBXGroup;
+			children = (
+				F6418B8A2C56E47A00DED462 /* CurrentWeather.json */,
+			);
+			path = SampleJSONs;
 			sourceTree = "<group>";
 		};
 		F6D4B5EC2C55BEE9005041E8 = {
@@ -89,7 +91,7 @@
 			children = (
 				F6D4B6012C55BEEA005041E8 /* Assets.xcassets */,
 				F6D4B6062C55BEEA005041E8 /* Info.plist */,
-				F6418B872C56E32000DED462 /* SampleJSONs */,
+				F6418B902C56E85E00DED462 /* SampleJSONs */,
 				F6418B8D2C56E4DF00DED462 /* Models */,
 				F6D4B60D2C55F2FC005041E8 /* App */,
 				F6D4B60C2C55F2E6005041E8 /* HomeVC */,
@@ -115,6 +117,7 @@
 				F6D4B5F82C55BEE9005041E8 /* AppDelegate.swift */,
 				F6D4B5FA2C55BEE9005041E8 /* SceneDelegate.swift */,
 				F6D4B6032C55BEEA005041E8 /* LaunchScreen.storyboard */,
+				F6418B912C56E87E00DED462 /* Api.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 				F6D4B6132C55F367005041E8 /* HomeWeeklyForecastRow.swift in Sources */,
 				F6D4B6112C55F355005041E8 /* HomeCarouselRow.swift in Sources */,
 				F6D4B60F2C55F33E005041E8 /* HomeTopRow.swift in Sources */,
+				F6418B922C56E87E00DED462 /* Api.swift in Sources */,
 				F6D4B6172C560192005041E8 /* DailyForecastCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
