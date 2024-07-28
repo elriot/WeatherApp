@@ -50,11 +50,11 @@ extension HomeVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         case 0:
-            return 175
-        case 1:
-            return 125
-        case 2:
             return 250
+        case 1:
+            return 160
+        case 2:
+            return 330
         default:
             return 0
         }

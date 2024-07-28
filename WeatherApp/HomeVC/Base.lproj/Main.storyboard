@@ -20,27 +20,79 @@
                                 <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeTopRow" rowHeight="175" id="jMm-7L-3gT" customClass="HomeTopRow" customModule="WeatherApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="175"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeTopRow" rowHeight="250" id="jMm-7L-3gT" customClass="HomeTopRow" customModule="WeatherApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="250"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jMm-7L-3gT" id="E7i-CI-gCW">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="175"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="250"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sun.max.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="HmJ-YM-q5e">
+                                                    <rect key="frame" x="218" y="16" width="150" height="150"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="HmJ-YM-q5e" secondAttribute="height" multiplier="1:1" id="5fH-sh-h8v"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="36°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dno-fY-0Y8">
+                                                    <rect key="frame" x="138" y="80" width="117" height="90"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="75"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New York" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wjY-H1-weo">
+                                                    <rect key="frame" x="160.33333333333334" y="59" width="72.333333333333343" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Clear" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1d8-Am-RKU">
+                                                    <rect key="frame" x="176.66666666666666" y="170" width="40" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="H: 39°  L: 33°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jLR-Lb-GQy">
+                                                    <rect key="frame" x="144" y="193" width="105" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="jLR-Lb-GQy" firstAttribute="centerX" secondItem="E7i-CI-gCW" secondAttribute="centerX" id="2Ea-m1-c8i"/>
+                                                <constraint firstItem="dno-fY-0Y8" firstAttribute="centerX" secondItem="E7i-CI-gCW" secondAttribute="centerX" id="Lrt-S0-UoY"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="HmJ-YM-q5e" secondAttribute="trailing" constant="5" id="Qcd-6b-M4N"/>
+                                                <constraint firstItem="HmJ-YM-q5e" firstAttribute="height" secondItem="E7i-CI-gCW" secondAttribute="height" multiplier="0.6" id="YIT-Mi-enO"/>
+                                                <constraint firstItem="jLR-Lb-GQy" firstAttribute="top" secondItem="1d8-Am-RKU" secondAttribute="bottom" constant="2" id="ix4-pW-rfv"/>
+                                                <constraint firstItem="dno-fY-0Y8" firstAttribute="top" secondItem="wjY-H1-weo" secondAttribute="bottom" id="kHO-rL-G2H"/>
+                                                <constraint firstItem="HmJ-YM-q5e" firstAttribute="top" secondItem="E7i-CI-gCW" secondAttribute="topMargin" constant="5" id="kdw-wq-rrZ"/>
+                                                <constraint firstItem="dno-fY-0Y8" firstAttribute="centerY" secondItem="E7i-CI-gCW" secondAttribute="centerY" id="llr-23-Vae"/>
+                                                <constraint firstItem="1d8-Am-RKU" firstAttribute="top" secondItem="dno-fY-0Y8" secondAttribute="bottom" id="qRW-Qo-LqA"/>
+                                                <constraint firstItem="1d8-Am-RKU" firstAttribute="centerX" secondItem="E7i-CI-gCW" secondAttribute="centerX" id="tmb-sP-4hn"/>
+                                                <constraint firstItem="wjY-H1-weo" firstAttribute="centerX" secondItem="E7i-CI-gCW" secondAttribute="centerX" id="vQE-R3-ylV"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="descriptionLabel" destination="1d8-Am-RKU" id="FGs-Ax-Pv0"/>
+                                            <outlet property="highLowLabel" destination="jLR-Lb-GQy" id="Abk-3B-99t"/>
+                                            <outlet property="img" destination="HmJ-YM-q5e" id="TGn-Jd-zul"/>
+                                            <outlet property="locationLabel" destination="wjY-H1-weo" id="BVu-Ug-VZW"/>
+                                            <outlet property="temperatureLabel" destination="dno-fY-0Y8" id="am8-pm-cO6"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeCarouselRow" rowHeight="125" id="uGm-1r-Cfn" customClass="HomeCarouselRow" customModule="WeatherApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="225" width="393" height="125"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeCarouselRow" rowHeight="160" id="uGm-1r-Cfn" customClass="HomeCarouselRow" customModule="WeatherApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="300" width="393" height="160"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uGm-1r-Cfn" id="eje-mc-h2o">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="125"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="160"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeWeeklyForecastRow" rowHeight="250" id="eCG-By-bGe" customClass="HomeWeeklyForecastRow" customModule="WeatherApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="350" width="393" height="250"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeWeeklyForecastRow" rowHeight="330" id="eCG-By-bGe" customClass="HomeWeeklyForecastRow" customModule="WeatherApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="460" width="393" height="330"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eCG-By-bGe" id="1Qn-D5-gZG">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="250"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="330"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -85,6 +137,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="sun.max.fill" catalog="system" width="128" height="125"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
