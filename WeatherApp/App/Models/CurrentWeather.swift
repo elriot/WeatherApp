@@ -25,19 +25,19 @@ struct CurrentWeather: Decodable{
 
 
 
-struct Coordinates {
+struct Coordinates: Decodable {
     let lon: Double
     let lat: Double
 }
 
-struct CurrentWeatherWeather {
+struct CurrentWeatherWeather: Decodable {
     let id: Int
     let main: String
     let description: String
     let icon: String
 }
 
-struct CurrentWeatherMain {
+struct CurrentWeatherMain: Decodable {
     let temp: Double
     let feels_like: Double
     let temp_min: Double
@@ -48,16 +48,16 @@ struct CurrentWeatherMain {
     let grnd_level: Int
 }
 
-struct CurrentWeatherWind {
+struct CurrentWeatherWind: Decodable {
     let speed: Double
     let deg: Int
 }
 
-struct CurrentWeatherClouds {
+struct CurrentWeatherClouds: Decodable {
     let all: Int
 }
 
-struct CurrentWeatherSys {
+struct CurrentWeatherSys: Decodable {
     let type: Int
     let id: Int
     let country: String
