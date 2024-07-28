@@ -16,6 +16,7 @@
 		F6D4B60F2C55F33E005041E8 /* HomeTopRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D4B60E2C55F33E005041E8 /* HomeTopRow.swift */; };
 		F6D4B6112C55F355005041E8 /* HomeCarouselRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D4B6102C55F355005041E8 /* HomeCarouselRow.swift */; };
 		F6D4B6132C55F367005041E8 /* HomeWeeklyForecastRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D4B6122C55F367005041E8 /* HomeWeeklyForecastRow.swift */; };
+		F6D4B6172C560192005041E8 /* DailyForecastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D4B6162C560192005041E8 /* DailyForecastCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		F6D4B60E2C55F33E005041E8 /* HomeTopRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopRow.swift; sourceTree = "<group>"; };
 		F6D4B6102C55F355005041E8 /* HomeCarouselRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCarouselRow.swift; sourceTree = "<group>"; };
 		F6D4B6122C55F367005041E8 /* HomeWeeklyForecastRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWeeklyForecastRow.swift; sourceTree = "<group>"; };
+		F6D4B6162C560192005041E8 /* DailyForecastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyForecastCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,11 +75,11 @@
 		F6D4B60C2C55F2E6005041E8 /* HomeVC */ = {
 			isa = PBXGroup;
 			children = (
-				F6D4B5FC2C55BEE9005041E8 /* HomeVC.swift */,
 				F6D4B5FE2C55BEE9005041E8 /* Main.storyboard */,
-				F6D4B60E2C55F33E005041E8 /* HomeTopRow.swift */,
-				F6D4B6102C55F355005041E8 /* HomeCarouselRow.swift */,
-				F6D4B6122C55F367005041E8 /* HomeWeeklyForecastRow.swift */,
+				F6D4B5FC2C55BEE9005041E8 /* HomeVC.swift */,
+				F6D4B6182C560372005041E8 /* TopRow */,
+				F6D4B6192C56037C005041E8 /* MiddleRow */,
+				F6D4B61B2C5603B5005041E8 /* BottomRow */,
 			);
 			path = HomeVC;
 			sourceTree = "<group>";
@@ -90,6 +92,31 @@
 				F6D4B6032C55BEEA005041E8 /* LaunchScreen.storyboard */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		F6D4B6182C560372005041E8 /* TopRow */ = {
+			isa = PBXGroup;
+			children = (
+				F6D4B60E2C55F33E005041E8 /* HomeTopRow.swift */,
+			);
+			path = TopRow;
+			sourceTree = "<group>";
+		};
+		F6D4B6192C56037C005041E8 /* MiddleRow */ = {
+			isa = PBXGroup;
+			children = (
+				F6D4B6102C55F355005041E8 /* HomeCarouselRow.swift */,
+				F6D4B6162C560192005041E8 /* DailyForecastCell.swift */,
+			);
+			path = MiddleRow;
+			sourceTree = "<group>";
+		};
+		F6D4B61B2C5603B5005041E8 /* BottomRow */ = {
+			isa = PBXGroup;
+			children = (
+				F6D4B6122C55F367005041E8 /* HomeWeeklyForecastRow.swift */,
+			);
+			path = BottomRow;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,6 +196,7 @@
 				F6D4B6132C55F367005041E8 /* HomeWeeklyForecastRow.swift in Sources */,
 				F6D4B6112C55F355005041E8 /* HomeCarouselRow.swift in Sources */,
 				F6D4B60F2C55F33E005041E8 /* HomeTopRow.swift in Sources */,
+				F6D4B6172C560192005041E8 /* DailyForecastCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
