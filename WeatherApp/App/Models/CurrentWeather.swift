@@ -20,10 +20,8 @@ struct CurrentWeather: Decodable{
     let timezone: Int
     let id: Int
     let name: String
-    let code: Int
+    let cod: Int
 }
-
-
 
 struct Coordinates: Decodable {
     let lon: Double
