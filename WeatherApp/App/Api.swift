@@ -11,7 +11,7 @@ class Api {
     static let shared = Api()
     private init(){}
     
-    
+    private let apiInfo = ApiInfo()
     let seattle: String = "CurrentWeather"
     let vancouver: String = "CurrentWeatherVancouver"
     
@@ -34,8 +34,14 @@ class Api {
     }
     
     // get live data calling api
-    func fetchCurrentWeatherLive(completion: @escaping (CurrentWeather?) -> Void) {
-        let urlStr = "https://api.openweathermap.org/data/2.5/weather?lat=49.2827&lon=-123.1216&appid=439f13d919e90a6ab2080888652aea35&units=metric"
+    func fetchCurrentWeatherLive(completion:
+                                 @escaping (CurrentWeather?) -> Void) {
+        guard let apiKey = apiInfo.getApiKey() else {
+            print("API key not found")
+            completion(nil)
+            return
+        }
+        let urlStr = "https://api.openweathermap.org/data/2.5/weather?lat=49.2827&lon=-123.1216&appid=\(apiKey)&units=metric"
         let url = URL(string: urlStr)!
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             guard error == nil, let data else {
@@ -101,7 +107,7 @@ class Api {
     private func getResourceName<T>(_ type: T.Type) -> String {
         return switch type {
         case is CurrentWeather.Type:
-            "CurrentWeather"
+            "CurrentWeatherVancouver"
         case is WeeklyForecast.Type:
             "WeeklyForecast"
         default:

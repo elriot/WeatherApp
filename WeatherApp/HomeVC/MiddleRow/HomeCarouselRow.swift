@@ -9,6 +9,7 @@ import UIKit
 
 class HomeCarouselRow: UITableViewCell {
     static let id = "HomeCarouselRow"
+    private var forecast: WeeklyForecast?
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -27,8 +28,10 @@ class HomeCarouselRow: UITableViewCell {
         collectionView.delegate = self
     }
     
-    func configure(){
-        
+    func configure(_ forecase: WeeklyForecast?){
+        guard let forecase else { return }
+        self.forecast = forecase
+        collectionView.reloadData()
     }
 
 }
@@ -40,6 +43,10 @@ extension HomeCarouselRow: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DailyForecastCell.id, for: indexPath) as! DailyForecastCell
+        if let list = forecast?.list {
+            let item = list[indexPath.item]
+            cell.configure(item)
+        }
         return cell
     }
 }
