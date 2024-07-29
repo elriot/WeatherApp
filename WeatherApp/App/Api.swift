@@ -10,7 +10,7 @@ import Foundation
 class Api {
     static let shared = Api()
     private init(){}
-    private let test = "test"
+    private let test = "testWeekly"
     private let apiInfo = ApiInfo()
     let seattle: String = "CurrentWeather"
     let vancouver: String = "CurrentWeatherVancouver"
