@@ -20,3 +20,4 @@ class DailyForecastCell: UICollectionViewCell {
         temperatureLabel.text = "\(item.main?.temp ?? 0)°"
     }
 }
+

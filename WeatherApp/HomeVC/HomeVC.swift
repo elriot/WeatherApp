@@ -40,17 +40,15 @@ class HomeVC: UIViewController {
 //            }
 //        }
         
-//        Api.shared.fetchSample(WeeklyForecast.self) { [weak self] forecast in
-//            guard let forecast else { return }
-//            dump("forcast : \(forecast)")
-//            DispatchQueue.main.async { [weak self] in
-//                guard let self else { return }
-//                weeklyForecast = forecast
-//                tableView.reloadData()
-//            }
-//
-//            
-//        }
+        Api.shared.fetchSample(WeeklyForecast.self) { [weak self] forecast in
+            guard let forecast else { return }
+            dump("forcast : \(forecast)")
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+                weeklyForecast = forecast
+                tableView.reloadData()
+            }
+        }
     }
     
     private func setupTableView(){
@@ -78,6 +76,7 @@ extension HomeVC: UITableViewDataSource {
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: HomeWeeklyForecastRow.id) as! HomeWeeklyForecastRow
+            cell.configure(weeklyForecast)
             return cell
         default:
             return UITableViewCell()
