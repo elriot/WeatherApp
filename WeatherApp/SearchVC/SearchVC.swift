@@ -9,6 +9,8 @@ import UIKit
 
 class SearchVC: UIViewController {
     
+    private let lm = LocationsManager.shared
+    
     private lazy var search: UISearchController = {
         let search = UISearchController(searchResultsController: SearchResultVC())
         search.searchBar.placeholder = "Search by city"
@@ -55,12 +57,14 @@ class SearchVC: UIViewController {
 
 extension SearchVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return lm.getLocations().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: LocationRow.searchId) as! LocationRow
-//        cell.configure()
+        let locations = lm.getLocations()
+        let location = locations[indexPath.row]
+        cell.configure(location)
         return cell
     }
 }
@@ -89,6 +93,13 @@ extension SearchVC: UISearchResultsUpdating {
 
 extension SearchVC: SearchResultsVCDelegate {
     func didSelect(_ location: SearchLocation) {
-        print("Here we are")
+        let locations = lm.getLocations()
+        lm.appendAndSave(location)
+        tableView.beginUpdates()
+        let index = IndexPath(row: locations.count-1, section: 0)
+        tableView.insertRows(at: [index], with: .automatic)
+        tableView.endUpdates()
+        search.isActive = false
+//        print("Here we are", location.name, location.lat, location.lon)
     }
 }

@@ -7,10 +7,11 @@
 
 import Foundation
 
-struct SearchLocation: Decodable {
+struct SearchLocation: Codable {
     let name: String
     let lat: Double
     let lon: Double
     let country: String
     let state: String?
 }
+
