@@ -44,8 +44,8 @@ extension HomeCarouselRow: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DailyForecastCell.id, for: indexPath) as! DailyForecastCell
-//            let item = list[indexPath.item]
-//            cell.configure(item)
+        let item = list[indexPath.item]
+        cell.configure(item)
         
         return cell
     }
