@@ -78,10 +78,6 @@ class Api {
         }
     }
     
-    func sampleFunction(int: Int){
-        
-    }
-    
     
     func fetchSample<T: Decodable>(_ type: T.Type, completion: @escaping (T?) -> Void) {
         let resource = getResourceName(type)
@@ -109,6 +105,8 @@ class Api {
             "CurrentWeatherVancouver"
         case is WeeklyForecast.Type:
             "WeeklyForecast"
+        case is [SearchLocation].Type:
+            "SearchLocation"
         default:
             ""
         }
