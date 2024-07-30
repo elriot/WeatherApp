@@ -15,3 +15,4 @@ struct SearchLocation: Codable {
     let state: String?
 }
 
+ 

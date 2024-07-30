@@ -93,8 +93,9 @@ extension SearchVC: UISearchResultsUpdating {
 
 extension SearchVC: SearchResultsVCDelegate {
     func didSelect(_ location: SearchLocation) {
-        let locations = lm.getLocations()
         lm.appendAndSave(location)
+        let locations = lm.getLocations()
+        
         tableView.beginUpdates()
         let index = IndexPath(row: locations.count-1, section: 0)
         tableView.insertRows(at: [index], with: .automatic)
