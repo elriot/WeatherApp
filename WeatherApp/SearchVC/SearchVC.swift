@@ -49,7 +49,7 @@ class SearchVC: UIViewController {
     private func setupTableView(){
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(LocationRow.self, forCellReuseIdentifier: LocationRow.id)
+        tableView.register(LocationRow.self, forCellReuseIdentifier: LocationRow.searchId)
     }
 }
 
@@ -59,7 +59,8 @@ extension SearchVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: LocationRow.id) as! LocationRow
+        let cell = tableView.dequeueReusableCell(withIdentifier: LocationRow.searchId) as! LocationRow
+//        cell.configure()
         return cell
     }
 }
@@ -75,6 +76,12 @@ extension SearchVC: UISearchResultsUpdating {
         guard let text = searchController.searchBar.text else {
              return
         }
-        print(text)
+        
+        // optional casting
+//        guard let searchResults = searchController.searchResultsController as? SearchResultVC else { return }
+        
+        // force casting
+        let searchResults = searchController.searchResultsController as! SearchResultVC
+        searchResults.update(text: text)
     }
 }

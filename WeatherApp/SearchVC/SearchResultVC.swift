@@ -8,8 +8,11 @@
 import UIKit
 
 class SearchResultVC: UIViewController {
+
+    
+    private var locations : [SearchLocation] = []
+    
     private lazy var tableView: UITableView = {
-        
         let table = UITableView()
         table.backgroundColor = .systemBackground
         table.showsHorizontalScrollIndicator = false
@@ -32,17 +35,28 @@ class SearchResultVC: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(LocationRow.self, forCellReuseIdentifier: LocationRow.id)
+        tableView.register(LocationRow.self, forCellReuseIdentifier: LocationRow.resultsId)
+    }
+    
+    func update(text: String){
+        print(text)
+        Api.shared.fetchSample([SearchLocation].self) { [weak self] locations in
+            guard let self, let locations else { return }
+            self.locations = locations
+            self.tableView.reloadData()
+        }
     }
 }
 
 extension SearchResultVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return locations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: LocationRow.id) as! LocationRow
+        let cell = tableView.dequeueReusableCell(withIdentifier: LocationRow.resultsId) as! LocationRow
+        let location = locations[indexPath.row]
+        cell.configure(location)
         return cell
     }
 }
