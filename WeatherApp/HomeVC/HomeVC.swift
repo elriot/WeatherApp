@@ -13,11 +13,17 @@ class HomeVC: UIViewController {
     
     private var currentWeather: CurrentWeather?
     private var weeklyForecast: WeeklyForecast?
-    
+    let lm = LocationsManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        
+        if let location = lm.getSelectedLocation(){
+            fetchWeather(for: location)
+        } else {
+            pushLocationsVC()
+        }
         
 //        Api.shared.fetchCurrentWeatherLive { [weak self] weather in
 //            guard let weather else { return }
@@ -30,30 +36,42 @@ class HomeVC: UIViewController {
 //            }
 //        }
         
-        Api.shared.fetchSample(CurrentWeather.self) { [weak self] weather in
-            guard let self, let weather else { return }
-//            print("weather : ", weather)
-            DispatchQueue.main.async { [weak self] in
-                guard let self else { return }
-                currentWeather = weather
-                tableView.reloadData()
-            }
-        }
-        
-        Api.shared.fetchSample(WeeklyForecast.self) { [weak self] forecast in
-            guard let forecast else { return }
-//            dump("forcast : \(forecast)")
-            DispatchQueue.main.async { [weak self] in
-                guard let self else { return }
-                weeklyForecast = forecast
-                tableView.reloadData()
-            }
-        }
+//        Api.shared.fetchSample(CurrentWeather.self) { [weak self] weather in
+//            guard let self, let weather else { return }
+////            print("weather : ", weather)
+//            DispatchQueue.main.async { [weak self] in
+//                guard let self else { return }
+//                currentWeather = weather
+//                tableView.reloadData()
+//            }
+//        }
+//        
+//        Api.shared.fetchSample(WeeklyForecast.self) { [weak self] forecast in
+//            guard let forecast else { return }
+////            dump("forcast : \(forecast)")
+//            DispatchQueue.main.async { [weak self] in
+//                guard let self else { return }
+//                weeklyForecast = forecast
+//                tableView.reloadData()
+//            }
+//        }
     }
     
     private func setupTableView(){
         tableView.dataSource = self
         tableView.delegate = self
+    }
+    
+    private func fetchWeather(for location: SearchLocation){
+        Api.shared.fetchWeather(lat: location.lat, lon: location.lon) { weather in
+            guard let weather else { return }
+            DispatchQueue.main.async {
+                [weak self] in
+                guard let self else { return }
+                currentWeather = weather
+                tableView.reloadData()
+            }
+        }
     }
 
     @IBAction func didTapListButton(_ sender: UIBarButtonItem) {
@@ -111,15 +129,7 @@ extension HomeVC: UITableViewDelegate {
 extension HomeVC: SearchVCDelegate {
     func didSelect(_ location: SearchLocation) {
         //        dump(location)
-        Api.shared.fetchWeather(lat: location.lat, lon: location.lon) { weather in
-            guard let weather else { return }
-            DispatchQueue.main.async {
-                [weak self] in
-                guard let self else { return }
-                currentWeather = weather
-                tableView.reloadData()
-            }
-        }
+        fetchWeather(for: location)
     }
 }
 

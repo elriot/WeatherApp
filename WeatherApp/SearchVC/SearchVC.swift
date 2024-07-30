@@ -95,6 +95,7 @@ extension SearchVC: UITableViewDelegate {
         let locations = lm.getLocations()
         let location = locations[indexPath.row]
         delegate?.didSelect(location)
+        lm.saveSelected(location)
         popVC()
     }
 }
