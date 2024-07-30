@@ -2,3 +2,6 @@
 
 # Ignore API keys
 ApiInfo.swift
+
+# Xcode specific files
+*.xcuserstate
