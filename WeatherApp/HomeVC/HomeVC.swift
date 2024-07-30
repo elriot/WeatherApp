@@ -57,9 +57,12 @@ class HomeVC: UIViewController {
     }
 
     @IBAction func didTapListButton(_ sender: UIBarButtonItem) {
-        let vc = SearchVC()
-        pushVC(vc)
-//        navigationController?.pushViewController(vc, animated: true)
+        pushLocationsVC()
+    }
+    private func pushLocationsVC() {
+        let searchVC = SearchVC()
+        searchVC.delegate = self
+        pushVC(searchVC)
     }
 }
 
@@ -104,3 +107,20 @@ extension HomeVC: UITableViewDelegate {
         }
     }
 }
+
+extension HomeVC: SearchVCDelegate {
+    func didSelect(_ location: SearchLocation) {
+        //        dump(location)
+        Api.shared.fetchWeather(lat: location.lat, lon: location.lon) { weather in
+            guard let weather else { return }
+            DispatchQueue.main.async {
+                [weak self] in
+                guard let self else { return }
+                currentWeather = weather
+                tableView.reloadData()
+            }
+        }
+    }
+}
+
+

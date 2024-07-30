@@ -32,6 +32,32 @@ class Api {
         }
     }
     
+    func fetchWeather(lat: Double, lon: Double, completion: @escaping(CurrentWeather?) -> Void){
+        guard let apiKey = ApiInfo.apiKey else {
+            print("API key not found")
+            completion(nil)
+            return
+        }
+        let urlStr = "https://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&appid=\(apiKey)&units=metric"
+        let url = URL(string: urlStr)!
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            guard error == nil, let data else {
+                completion(nil)
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            do {
+                let decodeData = try decoder.decode(CurrentWeather.self, from: data)
+                completion(decodeData)
+            } catch {
+                print("Decoding error: \(error)")
+                completion(nil)
+            }
+        }
+        task.resume()
+    }
+    
     // get live data calling api
     func fetchCurrentWeatherLive(completion:
                                  @escaping (CurrentWeather?) -> Void) {
