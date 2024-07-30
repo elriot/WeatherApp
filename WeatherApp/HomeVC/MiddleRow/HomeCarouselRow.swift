@@ -38,7 +38,7 @@ class HomeCarouselRow: UITableViewCell {
 
 extension HomeCarouselRow: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(list.count)
+//        print(list.count)
         return list.count > 8 ? 8 : list.count
     }
     

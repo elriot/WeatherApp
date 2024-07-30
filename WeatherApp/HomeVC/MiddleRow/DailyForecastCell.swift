@@ -21,8 +21,10 @@ class DailyForecastCell: UICollectionViewCell {
         } else {
             img.image = nil
         }
-        timeLabel.text = item.dt_txt
-        temperatureLabel.text = "\(item.main?.temp ?? 0)°"
+        
+        timeLabel.text = item.dt?.toHour()
+        let tempInt: Int = Int(item.main?.temp ?? 0)
+        temperatureLabel.text = "\(tempInt)°"
     }
 }
 

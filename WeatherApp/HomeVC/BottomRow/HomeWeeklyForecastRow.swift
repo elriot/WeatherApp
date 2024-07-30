@@ -36,7 +36,7 @@ class HomeWeeklyForecastRow: UITableViewCell {
 
 extension HomeWeeklyForecastRow: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("daily forecast count", dailyForecast.count)
+//        print("daily forecast count", dailyForecast.count)
         return dailyForecast.count > 5 ? 5 : dailyForecast.count
     }
     

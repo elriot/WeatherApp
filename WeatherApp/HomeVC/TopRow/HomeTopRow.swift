@@ -28,11 +28,11 @@ class HomeTopRow: UITableViewCell {
     
     func configure(_ weather: CurrentWeather?) {
         guard let weather else { return }
-        temperatureLabel.text = "\(weather.main.temp)"
+        temperatureLabel.text = "\(Int(weather.main.temp))"
         locationLabel.text = weather.name
         descriptionLabel.text = weather.weather.first?.description
-        let low = weather.main.temp_min
-        let high = weather.main.temp_max
+        let low: Int = Int(weather.main.temp_min)
+        let high: Int = Int(weather.main.temp_max)
         highLowLabel.text = "L:\(low)° | H:\(high)°"
         
         if let description = weather.weather.first?.main {
