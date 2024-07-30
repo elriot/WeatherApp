@@ -19,38 +19,36 @@ class HomeVC: UIViewController {
         super.viewDidLoad()
         setupTableView()
         
-        Api.shared.fetchCurrentWeatherLive { [weak self] weather in
-            guard let weather else { return }
-            
-            print("we recieved data here", weather)
-            
+//        Api.shared.fetchCurrentWeatherLive { [weak self] weather in
+//            guard let weather else { return }
+//            
+////            print("we recieved data here", weather)
+//            
+//            DispatchQueue.main.async { [weak self] in
+//                self?.currentWeather = weather
+//                self?.tableView.reloadData()
+//            }
+//        }
+        
+        Api.shared.fetchSample(CurrentWeather.self) { [weak self] weather in
+            guard let self, let weather else { return }
+//            print("weather : ", weather)
             DispatchQueue.main.async { [weak self] in
-                self?.currentWeather = weather
-                self?.tableView.reloadData()
+                guard let self else { return }
+                currentWeather = weather
+                tableView.reloadData()
             }
         }
         
-//        Api.shared.fetchSample(CurrentWeather.self) { [weak self] weather in
-//            guard let self, let weather else { return }
-//            print("weather : ", weather)
-//            DispatchQueue.main.async { [weak self] in
-//                guard let self else { return }
-//                currentWeather = weather
-//                tableView.reloadData()
-//            }
-//        }
-        
-//        Api.shared.fetchSample(WeeklyForecast.self) { [weak self] forecast in
-//            guard let forecast else { return }
+        Api.shared.fetchSample(WeeklyForecast.self) { [weak self] forecast in
+            guard let forecast else { return }
 //            dump("forcast : \(forecast)")
-//            DispatchQueue.main.async { [weak self] in
-//                guard let self else { return }
-//                weeklyForecast = forecast
-//                tableView.reloadData()
-//            }
-//
-//            
-//        }
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+                weeklyForecast = forecast
+                tableView.reloadData()
+            }
+        }
     }
     
     private func setupTableView(){
@@ -58,6 +56,8 @@ class HomeVC: UIViewController {
         tableView.delegate = self
     }
 
+    @IBAction func didTapListButton(_ sender: UIBarButtonItem) {
+    }
 }
 
 extension HomeVC: UITableViewDataSource {
@@ -78,6 +78,7 @@ extension HomeVC: UITableViewDataSource {
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: HomeWeeklyForecastRow.id) as! HomeWeeklyForecastRow
+            cell.configure(weeklyForecast)
             return cell
         default:
             return UITableViewCell()
