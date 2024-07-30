@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension [Double] {
     func average() -> Double {
@@ -35,3 +36,11 @@ extension Int {
         return formatter.string(from: date)
     }
 }
+
+extension UIViewController {
+    func pushVC(_ vc: UIViewController?){
+        guard let newVC = vc else { return }
+        navigationController?.pushViewController(newVC, animated: true)
+    }
+}
+
