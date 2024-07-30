@@ -67,7 +67,7 @@ extension SearchVC: UITableViewDataSource {
 
 extension SearchVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 70
     }
 }
 
@@ -83,5 +83,12 @@ extension SearchVC: UISearchResultsUpdating {
         // force casting
         let searchResults = searchController.searchResultsController as! SearchResultVC
         searchResults.update(text: text)
+        searchResults.delegate = self
+    }
+}
+
+extension SearchVC: SearchResultsVCDelegate {
+    func didSelect(_ location: SearchLocation) {
+        print("Here we are")
     }
 }

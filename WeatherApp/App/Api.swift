@@ -35,7 +35,7 @@ class Api {
     // get live data calling api
     func fetchCurrentWeatherLive(completion:
                                  @escaping (CurrentWeather?) -> Void) {
-        guard let apiKey = apiInfo.getApiKey() else {
+        guard let apiKey = ApiInfo.apiKey else {
             print("API key not found")
             completion(nil)
             return

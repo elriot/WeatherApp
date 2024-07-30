@@ -7,9 +7,13 @@
 
 import UIKit
 
+protocol SearchResultsVCDelegate where Self: SearchVC {
+    func didSelect(_ location: SearchLocation)
+}
+
 class SearchResultVC: UIViewController {
 
-    
+    weak var delegate: SearchResultsVCDelegate?
     private var locations : [SearchLocation] = []
     
     private lazy var tableView: UITableView = {
@@ -62,7 +66,14 @@ extension SearchResultVC: UITableViewDataSource {
 }
 
 extension SearchResultVC: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 40
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let location = locations[indexPath.row]
+        delegate?.didSelect(location)
     }
 }
