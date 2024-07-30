@@ -4,4 +4,8 @@
 ApiInfo.swift
 
 # Xcode specific files
+xcuserdata/
+*.xccheckout
+*.moved-aside
 *.xcuserstate
+*.xcscmblueprint
