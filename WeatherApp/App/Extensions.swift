@@ -42,5 +42,9 @@ extension UIViewController {
         guard let newVC = vc else { return }
         navigationController?.pushViewController(newVC, animated: true)
     }
+    
+    func popVC(){
+        navigationController?.popViewController(animated: true)
+    }
 }
 

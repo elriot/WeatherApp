@@ -7,9 +7,16 @@
 
 import UIKit
 
+protocol SearchVCDelegate where Self: HomeVC {
+    func didSelect(_ location: SearchLocation)
+}
+
 class SearchVC: UIViewController {
+//    static let id = "SearchVC"
     
+    weak var delegate: SearchVCDelegate?
     private let lm = LocationsManager.shared
+    private var timer = Timer()
     
     private lazy var search: UISearchController = {
         let search = UISearchController(searchResultsController: SearchResultVC())
@@ -73,6 +80,26 @@ extension SearchVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
+    
+    // delete function (SearchLocation)
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let locations = lm.getLocations()
+            let location = locations[indexPath.row]
+            lm.delete(location)
+            tableView.beginUpdates()
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            tableView.endUpdates()
+        }
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let locations = lm.getLocations()
+        let location = locations[indexPath.row]
+        delegate?.didSelect(location)
+        lm.saveSelected(location)
+        popVC()
+    }
 }
 
 extension SearchVC: UISearchResultsUpdating {
@@ -80,21 +107,23 @@ extension SearchVC: UISearchResultsUpdating {
         guard let text = searchController.searchBar.text else {
              return
         }
-        
-        // optional casting
-//        guard let searchResults = searchController.searchResultsController as? SearchResultVC else { return }
-        
-        // force casting
-        let searchResults = searchController.searchResultsController as! SearchResultVC
-        searchResults.update(text: text)
-        searchResults.delegate = self
+        timer.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { [weak self] _ in
+            guard let self else { return }
+//            print("timer!")
+            let searchResults = searchController.searchResultsController as! SearchResultVC
+            searchResults.delegate = self
+            searchResults.update(text: text)
+            timer.invalidate()
+        })
     }
 }
 
 extension SearchVC: SearchResultsVCDelegate {
     func didSelect(_ location: SearchLocation) {
-        let locations = lm.getLocations()
         lm.appendAndSave(location)
+        let locations = lm.getLocations()
+        
         tableView.beginUpdates()
         let index = IndexPath(row: locations.count-1, section: 0)
         tableView.insertRows(at: [index], with: .automatic)

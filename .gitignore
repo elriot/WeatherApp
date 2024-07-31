@@ -1,7 +1,7 @@
 # .gitignore
 
 # Ignore API keys
-ApiInfo.swift
+WeatherApp/App/ApiInfo.swift
 
 # Xcode specific files
 xcuserdata/

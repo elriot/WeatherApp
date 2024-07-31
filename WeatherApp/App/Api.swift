@@ -32,15 +32,8 @@ class Api {
         }
     }
     
-    // get live data calling api
-    func fetchCurrentWeatherLive(completion:
-                                 @escaping (CurrentWeather?) -> Void) {
-        guard let apiKey = ApiInfo.apiKey else {
-            print("API key not found")
-            completion(nil)
-            return
-        }
-        let urlStr = "https://api.openweathermap.org/data/2.5/weather?lat=49.2827&lon=-123.1216&appid=\(apiKey)&units=metric"
+    func fetchWeather(lat: Double, lon: Double, completion: @escaping(CurrentWeather?) -> Void){
+        let urlStr = "https://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&appid=\(ApiInfo.key)&units=metric"
         let url = URL(string: urlStr)!
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             guard error == nil, let data else {
@@ -51,6 +44,51 @@ class Api {
             let decoder = JSONDecoder()
             do {
                 let decodeData = try decoder.decode(CurrentWeather.self, from: data)
+                completion(decodeData)
+            } catch {
+                print("Decoding error: \(error)")
+                completion(nil)
+            }
+        }
+        task.resume()
+    }
+    
+    // get live data calling api
+    func fetchCurrentWeatherLive(completion:
+                                 @escaping (CurrentWeather?) -> Void) {
+        let urlStr = "https://api.openweathermap.org/data/2.5/weather?lat=49.2827&lon=-123.1216&appid=\(ApiInfo.key)&units=metric"
+        let url = URL(string: urlStr)!
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            guard error == nil, let data else {
+                completion(nil)
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            do {
+                let decodeData = try decoder.decode(CurrentWeather.self, from: data)
+                completion(decodeData)
+            } catch {
+                print("Decoding error: \(error)")
+                completion(nil)
+            }
+        }
+        task.resume()
+    }
+    
+    func fetchLocation(for city: String, completion:
+                                 @escaping ([SearchLocation]?) -> Void) {
+        let urlStr = "https://api.openweathermap.org/geo/1.0/direct?q=\(city)&limit=5&appid=\(ApiInfo.key)"
+        let url = URL(string: urlStr)!
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            guard error == nil, let data else {
+                completion(nil)
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            do {
+                let decodeData = try decoder.decode([SearchLocation].self, from: data)
                 completion(decodeData)
             } catch {
                 print("Decoding error: \(error)")
