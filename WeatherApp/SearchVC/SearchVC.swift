@@ -12,9 +12,11 @@ protocol SearchVCDelegate where Self: HomeVC {
 }
 
 class SearchVC: UIViewController {
-    static let id = "SearchVC"
+//    static let id = "SearchVC"
+    
     weak var delegate: SearchVCDelegate?
     private let lm = LocationsManager.shared
+    private var timer = Timer()
     
     private lazy var search: UISearchController = {
         let search = UISearchController(searchResultsController: SearchResultVC())
@@ -105,14 +107,15 @@ extension SearchVC: UISearchResultsUpdating {
         guard let text = searchController.searchBar.text else {
              return
         }
-        
-        // optional casting
-//        guard let searchResults = searchController.searchResultsController as? SearchResultVC else { return }
-        
-        // force casting
-        let searchResults = searchController.searchResultsController as! SearchResultVC
-        searchResults.update(text: text)
-        searchResults.delegate = self
+        timer.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { [weak self] _ in
+            guard let self else { return }
+//            print("timer!")
+            let searchResults = searchController.searchResultsController as! SearchResultVC
+            searchResults.delegate = self
+            searchResults.update(text: text)
+            timer.invalidate()
+        })
     }
 }
 

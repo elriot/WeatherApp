@@ -44,10 +44,13 @@ class SearchResultVC: UIViewController {
     
     func update(text: String){
         print(text)
-        Api.shared.fetchSample([SearchLocation].self) { [weak self] locations in
-            guard let self, let locations else { return }
-            self.locations = locations
-            self.tableView.reloadData()
+        Api.shared.fetchLocation(for: text) { locations in
+            guard  let locations else { return }
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+                self.locations = locations
+                self.tableView.reloadData()
+            }
         }
     }
 }

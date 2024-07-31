@@ -76,6 +76,28 @@ class Api {
         task.resume()
     }
     
+    func fetchLocation(for city: String, completion:
+                                 @escaping ([SearchLocation]?) -> Void) {
+        let urlStr = "https://api.openweathermap.org/geo/1.0/direct?q=\(city)&limit=5&appid=\(ApiInfo.key)"
+        let url = URL(string: urlStr)!
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            guard error == nil, let data else {
+                completion(nil)
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            do {
+                let decodeData = try decoder.decode([SearchLocation].self, from: data)
+                completion(decodeData)
+            } catch {
+                print("Decoding error: \(error)")
+                completion(nil)
+            }
+        }
+        task.resume()
+    }
+    
     // sample data
     func fetchWeeklyForecast(completion: @escaping (WeeklyForecast?) -> Void) {
         guard let path = Bundle.main.path(forResource: "WeeklyForecast", ofType: "json") else {
