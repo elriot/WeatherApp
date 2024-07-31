@@ -72,7 +72,17 @@ class HomeVC: UIViewController {
                 tableView.reloadData()
             }
         }
+        Api.shared.fetchForecast(lat: location.lat, lon: location.lon) { forecast in
+            guard let forecast else { return }
+            DispatchQueue.main.async{ [weak self] in
+                guard let self else { return }
+                weeklyForecast = forecast
+                tableView.reloadData()
+            }
+        }
     }
+    
+    
 
     @IBAction func didTapListButton(_ sender: UIBarButtonItem) {
         pushLocationsVC()
