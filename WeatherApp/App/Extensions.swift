@@ -48,3 +48,32 @@ extension UIViewController {
     }
 }
 
+extension UIColor {
+    static let cloudColor = UIColor(named: "CloudyBackground")!
+    static let rainColor = UIColor(named: "RainyBackground")!
+    static let snowColor = UIColor(named: "SnowyBackground")!
+    static let sunColor = UIColor(named: "SunnyBackground")!
+    static let windColor = UIColor(named: "WindyBackground")!
+}
+
+extension UIViewController {
+    func setBackgroundColor(_ weather: CurrentWeather?){
+        guard let weather, let description = weather.weather.first?.main else {
+            resetBackgroundColor()
+            return
+        }
+        
+        let weatherType = WeatherType(description)
+        view.backgroundColor = weatherType.background
+        navigationController?.navigationBar.barTintColor = weatherType.background
+        tabBarController?.tabBar.barTintColor = weatherType.background
+        tabBarController?.tabBar.tintColor = weatherType.tint
+    }
+    
+    func resetBackgroundColor() {
+        view.backgroundColor = .white
+        navigationController?.navigationBar.barTintColor = .white
+        tabBarController?.tabBar.barTintColor = .white
+        tabBarController?.tabBar.tintColor = .systemBlue
+    }
+}
