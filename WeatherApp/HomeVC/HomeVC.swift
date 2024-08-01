@@ -11,7 +11,11 @@ class HomeVC: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
     
-    private var currentWeather: CurrentWeather?
+    private var currentWeather: CurrentWeather? {
+        didSet { // call when currentWeather changed
+            setBackgroundColor(currentWeather)
+        }
+    }
     private var weeklyForecast: WeeklyForecast?
     let lm = LocationsManager.shared
     
@@ -24,7 +28,6 @@ class HomeVC: UIViewController {
         } else {
             pushLocationsVC()
         }
-        
 //        Api.shared.fetchCurrentWeatherLive { [weak self] weather in
 //            guard let weather else { return }
 //            
@@ -55,6 +58,15 @@ class HomeVC: UIViewController {
 //                tableView.reloadData()
 //            }
 //        }
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setBackgroundColor(currentWeather)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        resetBackgroundColor()
     }
     
     private func setupTableView(){

@@ -39,7 +39,7 @@ class Api {
 //        }
 //    }
     
-    private func fetch<T: Decodable>(_ type: T.Type, _ request: URLRequest, completion: @escaping(T?) -> Void) {
+    private func fetch<T: Decodable>(_ type: T.Type, _ request: URLRequest, completion: @escaping (T?) -> Void) {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil, let data else {
                 completion(nil)
@@ -87,7 +87,7 @@ class Api {
     }
     
     
-    func fetchWeather(lat: Double, lon: Double, completion: @escaping((CurrentWeather?, WeeklyForecast?)) -> Void) {
+    func fetchWeather(lat: Double, lon: Double, completion: @escaping ((CurrentWeather?, WeeklyForecast?)) -> Void) {
         // call fetch x2 for CurrentWeather and WeeklyForecast objects
         // Construct URLRequest object x2 for the fetch function
         guard let currentWeather = constructURL(for: .currentWeather, lat, lon, nil), let weeklyForecast = constructURL(for: .weeklyForecast, lat, lon, nil) else {
@@ -116,7 +116,7 @@ class Api {
         }
     }
     
-    func fetchLocation(city: String, completion: @escaping([SearchLocation]?) -> Void){
+    func fetchLocation(city: String, completion: @escaping ([SearchLocation]?) -> Void){
         // Construct URLRequest object x1 for the fetch function for searching a location
         guard let search = constructURL(for: .citySearch, nil, nil, city) else {
             completion(nil)
